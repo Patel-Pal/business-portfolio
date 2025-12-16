@@ -16,9 +16,9 @@ interface ContactErrors {
 }
 
 const socialLinks = [
-  { icon: Github, href: 'https://github.com', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-  { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
+  // { icon: Github, href: 'https://github.com', label: 'GitHub' },
+  // { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
+  { icon: Instagram, href: 'https://www.instagram.com/dev_in_pro?igsh=MXgyOWJocWpwNWpkYQ==', label: 'Instagram' },
 ];
 
 export function ContactSection() {
@@ -98,8 +98,8 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h3 className="font-semibold">Email</h3>
-                  <a href="mailto:hello@example.com" className="text-muted-foreground hover:text-primary transition-colors">
-                    hello@example.com
+                  <a href="devinpro.404@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                    devinpro.404@gmail.com
                   </a>
                 </div>
               </div>

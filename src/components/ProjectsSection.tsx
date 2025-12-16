@@ -3,53 +3,53 @@ import { Button } from '@/components/ui/button';
 
 const projects = [
   {
-    title: 'E-Commerce Platform',
-    description: 'A full-featured online store with cart, checkout, and payment integration. Built for scalability and performance.',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop',
+    title: 'sandwitch delight Platform',
+    description: 'A fully responsive restaurant website designed to present menu offerings, brand story, and key information with a clean and modern UI. Built with performance, accessibility, and scalability in mind.',
+    image: 'https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
     tags: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
-    liveUrl: '#',
+    liveUrl: 'https://sandwich-delight-launch.vercel.app/',
     githubUrl: '#',
   },
   {
-    title: 'Task Management App',
-    description: 'Collaborative project management tool with real-time updates, drag-and-drop, and team features.',
-    image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop',
+    title: 'Mehndi Art Studio',
+    description: 'An aesthetically pleasing website crafted to celebrate the beauty of mehndi art, featuring elegant layouts, rich visuals, and a seamless browsing experience across devices.',
+    image: 'https://henna-haven-designs.vercel.app/assets/hero-mehndi-DUGJE0e-.jpg',
     tags: ['Next.js', 'TypeScript', 'Prisma', 'WebSocket'],
-    liveUrl: '#',
+    liveUrl: 'https://henna-haven-designs.vercel.app/',
     githubUrl: '#',
   },
   {
-    title: 'AI Content Generator',
+    title: 'E-Learning Platform',
     description: 'SaaS platform leveraging AI to generate marketing copy, blog posts, and social media content.',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_px8ZhKKke5i15eGRvs1JW3NQYtGsgKCIqQ&s',
     tags: ['React', 'OpenAI', 'Tailwind', 'Supabase'],
-    liveUrl: '#',
+    liveUrl: 'https://js-explorer-nine.vercel.app/',
     githubUrl: '#',
   },
   {
-    title: 'Real Estate Dashboard',
-    description: 'Analytics dashboard for property management with interactive charts and data visualization.',
-    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=400&fit=crop',
+    title: 'Nail Art Showcase Website',
+    description: 'A professional online showcase for nail artists, created to attract clients, display design portfolios, and strengthen brand presence through a visually engaging interface.',
+    image: 'https://img.freepik.com/premium-photo/nail-art-design-hd-8k-wallpaper-stock-photographic-image_853645-45251.jpg',
     tags: ['React', 'D3.js', 'GraphQL', 'MongoDB'],
-    liveUrl: '#',
+    liveUrl: 'https://nail-art-showcase-in.vercel.app/',
     githubUrl: '#',
   },
-  {
-    title: 'Fitness Tracking App',
-    description: 'Mobile-first fitness application with workout tracking, progress analytics, and social features.',
-    image: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=600&h=400&fit=crop',
-    tags: ['React Native', 'TypeScript', 'Firebase'],
-    liveUrl: '#',
-    githubUrl: '#',
-  },
-  {
-    title: 'Social Media Platform',
-    description: 'Community platform with real-time messaging, content sharing, and engagement features.',
-    image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=400&fit=crop',
-    tags: ['Next.js', 'Redis', 'PostgreSQL', 'AWS'],
-    liveUrl: '#',
-    githubUrl: '#',
-  },
+  // {
+  //   title: 'Fitness Tracking App',
+  //   description: 'Mobile-first fitness application with workout tracking, progress analytics, and social features.',
+  //   image: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=600&h=400&fit=crop',
+  //   tags: ['React Native', 'TypeScript', 'Firebase'],
+  //   liveUrl: '#',
+  //   githubUrl: '#',
+  // },
+  // {
+  //   title: 'Social Media Platform',
+  //   description: 'Community platform with real-time messaging, content sharing, and engagement features.',
+  //   image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=400&fit=crop',
+  //   tags: ['Next.js', 'Redis', 'PostgreSQL', 'AWS'],
+  //   liveUrl: '#',
+  //   githubUrl: '#',
+  // },
 ];
 
 export function ProjectsSection() {
@@ -91,14 +91,14 @@ export function ProjectsSection() {
 
                 {/* Tags */}
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
+                  {/* {project.tags.map((tag) => (
                     <span
                       key={tag}
                       className="px-2 py-1 text-xs font-medium rounded-md bg-primary/10 text-primary"
                     >
                       {tag}
                     </span>
-                  ))}
+                  ))} */}
                 </div>
 
                 {/* Actions */}
@@ -109,11 +109,11 @@ export function ProjectsSection() {
                       Live Demo
                     </a>
                   </Button>
-                  <Button variant="outline" size="sm" asChild>
+                  {/* <Button variant="outline" size="sm" asChild>
                     <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                       <Github className="w-4 h-4" />
                     </a>
-                  </Button>
+                  </Button> */}
                 </div>
               </div>
             </article>

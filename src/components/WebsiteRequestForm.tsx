@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import emailjs from '@emailjs/browser';
+
 
 interface FormData {
   fullName: string;
@@ -41,6 +43,13 @@ const budgetRanges = [
 ];
 
 export function WebsiteRequestForm() {
+
+  const SERVICE_ID = 'service_5tx9bfp';
+  const ADMIN_TEMPLATE_ID = 'template_62w0s4g';
+  const USER_TEMPLATE_ID = 'template_zba4nkl';
+  const PUBLIC_KEY = 'LMUMZAxcC8VcgARva';
+  const ADMIN_EMAIL = 'devinpro.404@gmail.com';
+
   const [formData, setFormData] = useState<FormData>({
     fullName: '',
     email: '',
@@ -51,6 +60,11 @@ export function WebsiteRequestForm() {
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  // Initialize EmailJS on component mount
+  useEffect(() => {
+    emailjs.init(PUBLIC_KEY);
+  }, []);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -89,17 +103,72 @@ export function WebsiteRequestForm() {
     return Object.keys(newErrors).length === 0;
   };
 
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+
+  //   if (!validateForm()) return;
+
+  //   setStatus('submitting');
+
+  //   // Simulate API call
+  //   await new Promise(resolve => setTimeout(resolve, 1500));
+
+  //   setStatus('success');
+  //   setFormData({
+  //     fullName: '',
+  //     email: '',
+  //     phone: '',
+  //     websiteType: '',
+  //     budget: '',
+  //     description: '',
+  //   });
+  // };
+
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!validateForm()) return;
+  e.preventDefault();
 
-    setStatus('submitting');
+  if (!validateForm()) return;
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
+  setStatus('submitting');
+
+  try {
+    console.log('🔍 Submitting form with data:', formData);
+    console.log('📧 Admin Email:', ADMIN_EMAIL);
     
+    // 1️⃣ Send email to ADMIN
+    console.log('📤 Sending to ADMIN...');
+    const adminResponse = await emailjs.send(
+      SERVICE_ID,
+      ADMIN_TEMPLATE_ID,
+      {
+        to_email: ADMIN_EMAIL,
+        from_name: formData.fullName,
+        from_email: formData.email,
+        phone: formData.phone,
+        website_type: formData.websiteType,
+        budget: formData.budget,
+        description: formData.description,
+      }
+    );
+
+    console.log('✅ Admin email sent successfully:', adminResponse);
+
+    // 2️⃣ Send THANK YOU email to USER
+    console.log('📤 Sending to USER...');
+    const userResponse = await emailjs.send(
+      SERVICE_ID,
+      USER_TEMPLATE_ID,
+      {
+        to_name: formData.fullName,
+        to_email: formData.email,
+        website_type: formData.websiteType,
+      }
+    );
+
+    console.log('✅ User email sent successfully:', userResponse);
+
     setStatus('success');
+
     setFormData({
       fullName: '',
       email: '',
@@ -108,7 +177,14 @@ export function WebsiteRequestForm() {
       budget: '',
       description: '',
     });
-  };
+  } catch (error: any) {
+    console.error('❌ EmailJS Error:', error);
+    console.error('Error Status:', error?.status);
+    console.error('Error Text:', error?.text);
+    console.error('Full Error Object:', error);
+    setStatus('error');
+  }
+};
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -131,6 +207,25 @@ export function WebsiteRequestForm() {
               Thank you for your interest! I'll review your project details and get back to you within 24-48 hours.
             </p>
             <Button onClick={() => setStatus('idle')}>Submit Another Request</Button>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (status === 'error') {
+    return (
+      <section id="request" className="section-padding">
+        <div className="container-custom">
+          <div className="max-w-2xl mx-auto glass-card rounded-2xl p-8 md:p-12 text-center">
+            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-red-500/10 flex items-center justify-center">
+              <AlertCircle className="w-10 h-10 text-red-500" />
+            </div>
+            <h3 className="text-2xl font-bold mb-4">Something Went Wrong</h3>
+            <p className="text-muted-foreground mb-6">
+              We encountered an error while submitting your request. Please check the browser console for details and try again.
+            </p>
+            <Button onClick={() => setStatus('idle')}>Try Again</Button>
           </div>
         </div>
       </section>

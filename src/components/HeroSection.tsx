@@ -24,7 +24,7 @@ export function HeroSection() {
         <div className="max-w-4xl mx-auto text-center">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-8 animate-fade-up">
-            <Sparkles className="w-4 h-4" />
+            {/* <Sparkles className="w-4 h-4" /> */}
             <span>Available for new projects</span>
           </div>
 
@@ -58,7 +58,7 @@ export function HeroSection() {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 mt-20 pt-10 border-t border-border/50 animate-fade-up delay-400">
+          {/* <div className="grid grid-cols-3 gap-8 mt-20 pt-10 border-t border-border/50 animate-fade-up delay-400">
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold gradient-text">50+</div>
               <div className="text-sm text-muted-foreground mt-1">Projects Completed</div>
@@ -71,15 +71,15 @@ export function HeroSection() {
               <div className="text-3xl md:text-4xl font-bold gradient-text">30+</div>
               <div className="text-sm text-muted-foreground mt-1">Happy Clients</div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-2">
+        {/* <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-2">
           <div className="w-1 h-2 bg-muted-foreground/50 rounded-full" />
-        </div>
+        </div> */}
       </div>
     </section>
   );

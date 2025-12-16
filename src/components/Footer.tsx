@@ -8,11 +8,11 @@ const navLinks = [
   { href: '#contact', label: 'Contact' },
 ];
 
-const socialLinks = [
-  { icon: Github, href: 'https://github.com', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-  { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
-];
+// const socialLinks = [
+//   { icon: Github, href: 'https://github.com', label: 'GitHub' },
+//   { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
+//   { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
+// ];
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -24,10 +24,10 @@ export function Footer() {
           {/* Logo & Copyright */}
           <div className="text-center md:text-left">
             <a href="#" className="inline-flex items-center gap-2 mb-4 group">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+              {/* <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                 <Code2 className="w-5 h-5 text-primary" />
-              </div>
-              <span className="font-bold text-xl">DevPortfolio</span>
+              </div> */}
+              <span className="font-bold text-xl">Dev</span>
             </a>
             <p className="text-sm text-muted-foreground">
               © {currentYear} All rights reserved.
@@ -49,7 +49,7 @@ export function Footer() {
 
           {/* Social Links */}
           <div className="flex justify-center md:justify-end gap-3">
-            {socialLinks.map((social) => (
+            {/* {socialLinks.map((social) => (
               <a
                 key={social.label}
                 href={social.href}
@@ -60,16 +60,16 @@ export function Footer() {
               >
                 <social.icon className="w-5 h-5" />
               </a>
-            ))}
+            ))} */}
           </div>
         </div>
 
         {/* Bottom */}
-        <div className="mt-8 pt-8 border-t border-border/50 text-center">
+        {/* <div className="mt-8 pt-8 border-t border-border/50 text-center">
           <p className="text-sm text-muted-foreground flex items-center justify-center gap-1">
             Built with <Heart className="w-4 h-4 text-destructive fill-current" /> using React & Tailwind
           </p>
-        </div>
+        </div> */}
       </div>
     </footer>
   );
