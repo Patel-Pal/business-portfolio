@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Mail, MessageSquare, Send, Github, Linkedin, Instagram, CheckCircle, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import emailjs from '@emailjs/browser';
+import { useToast } from '@/hooks/use-toast';
 
 interface ContactFormData {
   name: string;
@@ -22,13 +24,14 @@ const socialLinks = [
 ];
 
 export function ContactSection() {
+  const { toast } = useToast();
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
     message: '',
   });
   const [errors, setErrors] = useState<ContactErrors>({});
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [loading, setLoading] = useState(false);
 
   const validateForm = (): boolean => {
     const newErrors: ContactErrors = {};
@@ -58,16 +61,49 @@ export function ContactSection() {
     
     if (!validateForm()) return;
 
-    setStatus('submitting');
+    setLoading(true);
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    setStatus('success');
-    setFormData({ name: '', email: '', message: '' });
-    
-    // Reset after showing success
-    setTimeout(() => setStatus('idle'), 3000);
+    try {
+      // Step 1: Send message to YOU
+      await emailjs.send(
+        "service_vzqwirx",            // service ID
+        "template_4takec9",           // template ID for contact form
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+        },
+        "yHkhDOlF3DoBiHp5q"           // PUBLIC_KEY
+      );
+
+      // Step 2: Auto reply to USER
+      await emailjs.send(
+        "service_vzqwirx",
+        "template_pfw61kw",           // template ID for auto reply
+        {
+          to_name: formData.name,
+          user_email: formData.email,
+          user_message: formData.message,
+        },
+        "yHkhDOlF3DoBiHp5q"
+      );
+
+      toast({
+        title: "Message sent!",
+        description: "Thank you for reaching out. I'll get back to you soon.",
+      });
+
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error('Email error:', error);
+      toast({
+        title: "Error sending email",
+        description: "Please try again.",
+        variant: "destructive",
+      });
+    }
+
+    setLoading(false);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -140,14 +176,6 @@ export function ContactSection() {
           {/* Contact Form */}
           <div className="lg:col-span-3">
             <form onSubmit={handleSubmit} className="glass-card rounded-2xl p-6 md:p-8">
-              {status === 'success' && (
-                <div className="mb-6 p-4 rounded-lg bg-green-500/10 border border-green-500/20 flex items-center gap-3">
-                  <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                  <p className="text-sm text-green-600 dark:text-green-400">
-                    Message sent successfully! I'll get back to you soon.
-                  </p>
-                </div>
-              )}
 
               <div className="space-y-6">
                 {/* Name */}
@@ -230,9 +258,9 @@ export function ContactSection() {
                   variant="hero"
                   size="lg"
                   className="w-full"
-                  disabled={status === 'submitting'}
+                  disabled={loading}
                 >
-                  {status === 'submitting' ? (
+                  {loading ? (
                     <>
                       <div className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
                       Sending...
