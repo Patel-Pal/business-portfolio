@@ -127,7 +127,7 @@ export function ContactSection() {
         <div className="grid lg:grid-cols-5 gap-8 max-w-5xl mx-auto">
           {/* Contact Info */}
           <div className="lg:col-span-2 space-y-6">
-            <div className="glass-card rounded-2xl p-6">
+            {/* <div className="glass-card rounded-2xl p-6">
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                   <Mail className="w-6 h-6 text-primary" />
@@ -139,7 +139,7 @@ export function ContactSection() {
                   </a>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <div className="glass-card rounded-2xl p-6">
               <div className="flex items-center gap-4 mb-4">

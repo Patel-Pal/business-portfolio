@@ -1,4 +1,5 @@
 import { ExternalLink, Github } from 'lucide-react';
+import { useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
 
 const projects = [
@@ -35,24 +36,44 @@ const projects = [
     githubUrl: '#',
   },
   // {
-  //   title: 'Fitness Tracking App',
-  //   description: 'Mobile-first fitness application with workout tracking, progress analytics, and social features.',
-  //   image: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=600&h=400&fit=crop',
+  //   title: 'Digital haven make your own design',
+  //   description: 'A creative, mobile-first platform that allows users to explore, customize, and create unique designs effortlessly. Focused on usability, flexibility, and modern aesthetics for a smooth design experience.',
+  //   image: '	https://design-haven-eight.vercel.app/assets/hero-banner-DmJCq6Mp.jpg',
   //   tags: ['React Native', 'TypeScript', 'Firebase'],
-  //   liveUrl: '#',
+  //   liveUrl: 'https://design-haven-eight.vercel.app/',
   //   githubUrl: '#',
   // },
   // {
-  //   title: 'Social Media Platform',
-  //   description: 'Community platform with real-time messaging, content sharing, and engagement features.',
-  //   image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=400&fit=crop',
+  //   title: 'Dental Clinic Website',
+  //   description: 'A modern dental clinic website designed to showcase services, build patient trust, and simplify appointment bookings through a clean, responsive, and user-friendly interface.',
+  //   image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWnbq8LYAs0klxTGGBbT6W1xRUIhOaOeZZ3g&s',
   //   tags: ['Next.js', 'Redis', 'PostgreSQL', 'AWS'],
-  //   liveUrl: '#',
+  //   liveUrl: 'https://smile-studio-project.vercel.app/',
   //   githubUrl: '#',
   // },
+
+  
+//    {
+//     title: 'Dental Clinic Website',
+//     description: 'A modern dental clinic website designed to showcase services, build patient trust, and simplify appointment bookings through a clean, responsive, and user-friendly interface.',
+//     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWnbq8LYAs0klxTGGBbT6W1xRUIhOaOeZZ3g&s',
+//     tags: ['Next.js', 'Redis', 'PostgreSQL', 'AWS'],
+//     liveUrl: 'https://smile-studio-project.vercel.app/',
+//     githubUrl: '#',
+//   },
 ];
 
 export function ProjectsSection() {
+  const ITEMS_PER_PAGE = 6;
+  const [page, setPage] = useState(1);
+
+  const pageCount = Math.max(1, Math.ceil(projects.length / ITEMS_PER_PAGE));
+
+  const paginated = useMemo(() => {
+    const start = (page - 1) * ITEMS_PER_PAGE;
+    return projects.slice(start, start + ITEMS_PER_PAGE);
+  }, [page]);
+
   return (
     <section id="projects" className="section-padding">
       <div className="container-custom">
@@ -65,9 +86,9 @@ export function ProjectsSection() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
+          {paginated.map((project, index) => (
             <article
-              key={project.title}
+              key={`${project.title}-${index}-${(page - 1)}`}
               className="group glass-card rounded-2xl overflow-hidden hover:scale-[1.02] transition-all duration-300"
             >
               {/* Image */}
@@ -91,14 +112,6 @@ export function ProjectsSection() {
 
                 {/* Tags */}
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {/* {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-1 text-xs font-medium rounded-md bg-primary/10 text-primary"
-                    >
-                      {tag}
-                    </span>
-                  ))} */}
                 </div>
 
                 {/* Actions */}
@@ -109,16 +122,51 @@ export function ProjectsSection() {
                       Live Demo
                     </a>
                   </Button>
-                  {/* <Button variant="outline" size="sm" asChild>
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                      <Github className="w-4 h-4" />
-                    </a>
-                  </Button> */}
                 </div>
               </div>
             </article>
           ))}
         </div>
+
+        {pageCount > 1 && (
+          <div className="flex items-center justify-center gap-2 mt-8">
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={page === 1}
+            >
+              Prev
+            </Button>
+
+            <div className="flex items-center gap-2">
+              {Array.from({ length: pageCount }).map((_, i) => {
+                const pageNumber = i + 1;
+                const isCurrent = pageNumber === page;
+                return (
+                  <Button
+                    key={pageNumber}
+                    size="sm"
+                    variant={isCurrent ? 'default' : 'ghost'}
+                    onClick={() => setPage(pageNumber)}
+                    aria-current={isCurrent ? 'page' : undefined}
+                  >
+                    {pageNumber}
+                  </Button>
+                );
+              })}
+            </div>
+
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => setPage((p) => Math.min(pageCount, p + 1))}
+              disabled={page === pageCount}
+            >
+              Next
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );

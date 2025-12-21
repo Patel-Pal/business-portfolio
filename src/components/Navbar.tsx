@@ -29,7 +29,7 @@ export function Navbar() {
     <nav
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        isScrolled
+        isScrolled || isOpen
           ? 'bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-sm'
           : 'bg-transparent'
       )}
@@ -89,7 +89,8 @@ export function Navbar() {
         <div
           className={cn(
             'md:hidden overflow-hidden transition-all duration-300',
-            isOpen ? 'max-h-80 pb-4' : 'max-h-0'
+            isOpen ? 'max-h-80 pb-4' : 'max-h-0',
+            isOpen ? 'bg-background/70 backdrop-blur-sm border-t border-border/30' : ''
           )}
         >
           <div className="flex flex-col gap-1 pt-2">
