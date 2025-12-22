@@ -35,22 +35,22 @@ const projects = [
     liveUrl: 'https://nail-art-showcase-in.vercel.app/',
     githubUrl: '#',
   },
-  // {
-  //   title: 'Digital haven make your own design',
-  //   description: 'A creative, mobile-first platform that allows users to explore, customize, and create unique designs effortlessly. Focused on usability, flexibility, and modern aesthetics for a smooth design experience.',
-  //   image: '	https://design-haven-eight.vercel.app/assets/hero-banner-DmJCq6Mp.jpg',
-  //   tags: ['React Native', 'TypeScript', 'Firebase'],
-  //   liveUrl: 'https://design-haven-eight.vercel.app/',
-  //   githubUrl: '#',
-  // },
-  // {
-  //   title: 'Dental Clinic Website',
-  //   description: 'A modern dental clinic website designed to showcase services, build patient trust, and simplify appointment bookings through a clean, responsive, and user-friendly interface.',
-  //   image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWnbq8LYAs0klxTGGBbT6W1xRUIhOaOeZZ3g&s',
-  //   tags: ['Next.js', 'Redis', 'PostgreSQL', 'AWS'],
-  //   liveUrl: 'https://smile-studio-project.vercel.app/',
-  //   githubUrl: '#',
-  // },
+  {
+    title: 'Digital haven make your own design',
+    description: 'A creative, mobile-first platform that allows users to explore, customize, and create unique designs effortlessly. Focused on usability, flexibility, and modern aesthetics for a smooth design experience.',
+    image: 'https://design-haven-eight.vercel.app/assets/hero-banner-DmJCq6Mp.jpg',
+    tags: ['React Native', 'TypeScript', 'Firebase'],
+    liveUrl: 'https://design-haven-eight.vercel.app/',
+    githubUrl: '#',
+  },
+  {
+    title: 'Dental Clinic Website',
+    description: 'A modern dental clinic website designed to showcase services, build patient trust, and simplify appointment bookings through a clean, responsive, and user-friendly interface.',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWnbq8LYAs0klxTGGBbT6W1xRUIhOaOeZZ3g&s',
+    tags: ['Next.js', 'Redis', 'PostgreSQL', 'AWS'],
+    liveUrl: 'https://smile-studio-project.vercel.app/',
+    githubUrl: '#',
+  },
 
   
 //    {
